@@ -1,7 +1,7 @@
 document.querySelector("#msg").innerHTML = "Made with <3 by <u>f1shy-dev</u>";
-const loader = `<svg class="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+const loader = `<svg class="animate-spin h-5 w-5 text-gray-800 dark:text-zinc-100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.text-zinc-200 7.text-zinc-200 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -27,7 +27,7 @@ const ck = async (emoji, text, msg = null) => {
   }</span><span class="${msg != null ? "flex flex-col" : ""}">${
     msg == null
       ? text
-      : ` <span>${text}</span><span class="text-gray-600 text-xs font-mono">${msg}</span>`
+      : ` <span>${text}</span><span class="text-zinc-600 dark:text-zinc-400 text-xs font-mono">${msg}</span>`
   }</span>`;
 
   checklist.appendChild(item);
@@ -54,7 +54,7 @@ const updateCk = async (item, emoji, text, msg = null) => {
   }</span><span class="${msg != null ? "flex flex-col" : ""}">${
     msg == null
       ? text
-      : ` <span>${text}</span><span class="text-gray-600 text-xs font-mono">${msg}</span>`
+      : ` <span>${text}</span><span class="text-zinc-600 dark:text-zinc-400 text-xs font-mono">${msg}</span>`
   }</span>`;
 };
 
@@ -139,8 +139,21 @@ const updateCk = async (item, emoji, text, msg = null) => {
     await updateCk(tabs, "load", `Running searches (${done}/${searches})...`);
     updateTitle();
 
-    const tab = window.open("https://bing.com/search?q=" + words[done]);
+    const tab = window.open(
+      "https://bing.com/search?q=" + words[done],
+      "_blank"
+    );
     await sleep(1200);
+    if (!tab) {
+      await updateCk(
+        tabs,
+        "❌",
+        `Failed to open tab!`,
+        "Please allow pop-ups and try again, and if it persists, please report an issue on GitHub."
+      );
+      await sleep(5000);
+      window.location.reload();
+    }
     tab.close();
     await sleep(700);
   }
