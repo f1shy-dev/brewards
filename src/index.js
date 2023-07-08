@@ -90,7 +90,9 @@ const updateCk = async (item, emoji, text, msg = null) => {
   check.close();
   await updateCk(loader, "✅", "Pop-ups allowed!");
 
-  const edge = navigator.userAgent.indexOf("Edg/") != -1;
+  const edge = ["Edg", "EdgA", "Edge", "EdgiOS"].some((e) =>
+    navigator.userAgent.includes(`${e}/`)
+  );
   if (!edge) {
     await ck(
       "😬",
