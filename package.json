@@ -1,0 +1,15 @@
+{
+  "name": "bing_kit",
+  "version": "1.0.0",
+  "source": "src/index.html",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.html src/check.html",
+    "build": "parcel build src/index.html src/check.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "postcss": "^8.4.25",
+    "tailwindcss": "^3.3.2"
+  }
+}
