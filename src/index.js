@@ -144,6 +144,6 @@ const updateCk = async (item, emoji, text, msg = null) => {
     tab.close();
     await sleep(700);
   }
-
+  updateTitle("Bing Rewards Auto-Search");
   await updateCk(tabs, "🎊", `Ran ${searches} searches successfully!`);
 })();
