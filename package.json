@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel src/index.html src/check.html",
-    "build": "parcel build src/index.html src/check.html"
+    "build": "parcel build src/index.html src/check.html --public-url ./"
   },
   "devDependencies": {
     "parcel": "^2.9.3",
